@@ -22,32 +22,16 @@ namespace Puzzle15
         {
             this.BackColor = Color.Black;
             this.Text = "Puzzle15";
-            InitalizeButtons();
+            InitializeBlocks();
         }
 
-        private void InitalizeButtons()
+        private void InitializeBlocks()
         {
-            int lentgth;
-            int top;
-            top = 1;
-            lentgth = 0;
+            PuzzleBlock block;
             for (int i = 1; i < 17; i++)
             {
-
-                lentgth++;
-                Button button = new Button();
-                this.Controls.Add(button);
-                button.Name = $"Button{i}";
-                button.Text = i.ToString();
-                if(i == 17) { button.Name = "Empty"; button.Text = null;}
-                button.Width = button.Height = 100;
-                button.Left = lentgth * button.Width;
-                button.Top = top * button.Width ;
-                if (lentgth == 4)
-                {
-                    top++;
-                    lentgth = 0;
-                }
+                block = new PuzzleBlock(i);
+                this.Controls.Add(block);
             }
         }
 

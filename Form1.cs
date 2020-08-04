@@ -38,7 +38,8 @@ namespace Puzzle15
                 Button button = new Button();
                 this.Controls.Add(button);
                 button.Name = $"Button{i}";
-                if(i == 17) { button.Name = "Empty";}
+                button.Text = i.ToString();
+                if(i == 17) { button.Name = "Empty"; button.Text = null;}
                 button.Width = button.Height = 100;
                 button.Left = lentgth * button.Width;
                 button.Top = top * button.Width ;

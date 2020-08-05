@@ -12,6 +12,7 @@ namespace Puzzle15
 {
     public partial class PuzzleArea : Form
     {
+
         public PuzzleArea()
         {
             InitializeComponent();
@@ -20,21 +21,34 @@ namespace Puzzle15
 
         private void InitializePuzzleArea()
         {
+
             this.BackColor = Color.Black;
             this.Text = "Puzzle15";
-            int  formwidth = 700;
-            this.ClientSize = new Size(formwidth, formwidth);
-            InitializeBlocks(formwidth);
+            int Height = 700;
+            int Width = 700;
+            this.ClientSize = new Size(Width, Height);
+            InitializeBlocks(Width, Height);
         }
-        private void InitializeBlocks(int formwidth)
+        private void InitializeBlocks(int Width, int Height)
         {
             PuzzleBlock block;
-            for (int i = 1; i < 17; i++)
+            int count = 0;
+            int rowcount = 12;
+            int collumcount = 12;
+            for (int row = 0; row < rowcount; row++)
             {
-                block = new PuzzleBlock(i, formwidth);
-                this.Controls.Add(block);
+                for (int collum = 0; collum < collumcount; collum++)
+                {
+                    count++;
+                    block = new PuzzleBlock(collum, row, Width, count, collumcount, rowcount, Height);
+                    this.Controls.Add(block);
+                }
             }
+            
         }
+        private void PuzzleArea_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

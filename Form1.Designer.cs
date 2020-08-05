@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(583, 557);
             this.Name = "PuzzleArea";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.PuzzleArea_Load);
             this.ResumeLayout(false);
 
         }

@@ -1,38 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace Puzzle15
 {
     class PuzzleBlock : Button
     {
-        static int top = 0;
-        static int left = 0;
-        public PuzzleBlock(int i, int formwidth)
+        public PuzzleBlock(int collum, int row, int formwidth, int count, int collumcount, int rowcount, int formheight)
         {
-
-            InitializePuzzleBlock(i,formwidth);
+            InitializePuzzleBlock(collum, row, formwidth, count, collumcount, rowcount, formheight);
         }
-        private void InitializePuzzleBlock(int i, int formwidth)
+        private void InitializePuzzleBlock(int collum, int row, int formwidth, int count, int collumcount, int rowcount, int formheight)
         {
-            
+            //protperties-------------------------------------------------------------------------------------------------------------------------------
             this.BackColor = Color.White;
-            this.Name = $"Button{i}";
-            this.Text = i.ToString();
-
-            this.Width = this.Height = 100;
+            this.Name = $"Button{count}";
+            this.Text = count.ToString();
+            this.Width = this.Height = 200;
+            if (count == collumcount*rowcount) { this.Text = null; this.Name = "Empty"; this.FlatStyle = FlatStyle.Flat; this.BackColor = Color.Black; }
             int spacebetween = 5;
-            int spacefromside = (formwidth-(this.Width*4)-(spacebetween*3))/2;
-            this.Left = left * (this.Width + spacebetween) + spacefromside;
-            this.Top = top * (this.Width + spacebetween) + spacefromside;
-
-            if (left == 3){ top++; left = 0;}
-            else{left++;}
-            if (i == 16) { this.Name = "Empty"; this.Text = null; this.BackColor = Color.Black; top = 0; left = 0; this.FlatStyle = FlatStyle.Flat; }
+            //------------------------------------------------------------------------------------------------------------------------------------------
+            //center location()
+            UpdateLocation(collum, row, formwidth, count, collumcount, rowcount, formheight, spacebetween);
+            AutoSizeCheck(collum, row, formwidth, count, collumcount, rowcount, formheight, spacebetween);
+        }
+        private void UpdateLocation(int collum, int row, int formwidth, int count, int collumcount, int rowcount, int formheight, int spacebetween)
+        {
+            int spacefromtop = (formheight - ((this.Width * collumcount) + (spacebetween * (collumcount - 1)))) / 2;
+            int spacefromleft = (formwidth - ((this.Width * rowcount) + (spacebetween * (rowcount - 1)))) / 2;
+            this.Left = collum * (this.Width + spacebetween) + spacefromtop;
+            this.Top = row * (this.Width + spacebetween) + spacefromleft;
+        }
+        private void AutoSizeCheck(int collum, int row, int formwidth, int count, int collumcount, int rowcount, int formheight, int spacebetween)
+        {
+            int rowlength = ((this.Width * collumcount) + (spacebetween * (collumcount - 1)));
+            int collumlength = ((this.Width * rowcount) + (spacebetween * (rowcount - 1)));
+            for(int i = 1; i < 3; i++)
+            {
+                int x = 0;
+                int y = 0;
+                int z = 0;
+                if (i == 1) { x = collumcount; y = formwidth; z = rowlength; }
+                else if (i == 2) { x = rowcount; y = formheight; z = collumlength; }
+                if (rowlength > y)
+                {
+                    if (y - (x * this.Width) < 0)
+                    {
+                        int avrgdifference = (formwidth - (x * this.Width)) / x;
+                        this.Width += avrgdifference - 1;
+                        this.Height = this.Width;
+                        UpdateLocation(collum, row, formwidth, count, collumcount, rowcount, formheight, spacebetween);
+                        spacebetween = 0;
+                    }
+                    else
+                    {
+                        spacebetween = 0;
+                        UpdateLocation(collum, row, formwidth, count, collumcount, rowcount, formheight, spacebetween);
+                    }
+                }
+            }
         }
     }
 }

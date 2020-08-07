@@ -25,7 +25,7 @@ namespace Puzzle15
             this.BackColor = Color.Black;
             this.Text = "Puzzle15";
             int Height = 700;
-            int Width = 700;
+            int Width = 500;
             this.ClientSize = new Size(Width, Height);
             InitializeBlocks(Width, Height);
         }
@@ -33,8 +33,8 @@ namespace Puzzle15
         {
             PuzzleBlock block;
             int count = 0;
-            int rowcount = 12;
-            int collumcount = 12;
+            int rowcount = 10;
+            int collumcount = 10;
             for (int row = 0; row < rowcount; row++)
             {
                 for (int collum = 0; collum < collumcount; collum++)
@@ -44,7 +44,6 @@ namespace Puzzle15
                     this.Controls.Add(block);
                 }
             }
-            
         }
         private void PuzzleArea_Load(object sender, EventArgs e)
         {

@@ -3,73 +3,78 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace Puzzle15
 {
+    
     class PuzzleBlock : Button
     {
-
-        public PuzzleBlock(int collum, int row, int formwidth, int count, int collumcount, int rowcount, int formheight)
+        public static int spacebetween { get; set; }
+        public int space = spacebetween;
+        public PuzzleBlock(int collum, int row, int formwidth, int collumcount, int rowcount, int formheight, Button allbuttons, bool swap)
         {
-            InitializePuzzleBlock(collum, row, formwidth, count, collumcount, rowcount, formheight);
+            InitializePuzzleBlock(collum, row, formwidth, collumcount, rowcount, formheight, allbuttons, swap);
         }
-        private void InitializePuzzleBlock(int collum, int row, int formwidth, int count, int collumcount, int rowcount, int formheight)
+        private void InitializePuzzleBlock(int collum, int row, int formwidth, int collumcount, int rowcount, int formheight, Button allbuttons, bool swap)
         {
-            
+            //check if resize
+            if(allbuttons == null){allbuttons = this;  }
             //properties-------------------------------------------------------------------------------------------------------------------------------
-            this.BackColor = Color.White;
-            this.Name = $"Button{count}";
-            this.Text = count.ToString();
-            this.Width = this.Height = 100;
-            if (count == collumcount*rowcount) { this.Text = null; this.Name = "Empty"; this.FlatStyle = FlatStyle.Flat; this.BackColor = Color.Black; }
-            int spacebetween = 5;
+            allbuttons.Width = allbuttons.Height = 100;
+            allbuttons.BackColor = Color.White;
+            if(swap == false) { spacebetween = 20; }
             //------------------------------------------------------------------------------------------------------------------------------------------
             //center buttons locations...
-            UpdateLocation(collum, row, formwidth, count, collumcount, rowcount, formheight, spacebetween);
+            UpdateLocation(collum, row, formwidth, collumcount, rowcount, formheight, allbuttons);
             //change button size if there is need to do that...
-            AutoSizeCheck(collum, row, formwidth, count, collumcount, rowcount, formheight, spacebetween);
+            AutoSizeCheck(collum, row, formwidth, collumcount, rowcount, formheight, allbuttons);
+            MessageBox.Show(spacebetween.ToString());
         }
-        private void UpdateLocation(int collum, int row, int formwidth, int count, int collumcount, int rowcount, int formheight, int spacebetween)
+        private void UpdateLocation(int collum, int row, int formwidth, int collumcount, int rowcount, int formheight, Button allbuttons)
         {
-            int spacefromtop = (formheight - ((this.Width * rowcount) + (spacebetween * (rowcount - 1)))) / 2;
-            int spacefromleft = (formwidth - ((this.Width * collumcount) + (spacebetween * (collumcount - 1)))) / 2;
-            this.Left = collum * (this.Width + spacebetween) + spacefromleft;
-            this.Top = row * (this.Width + spacebetween) + spacefromtop;
+            int spacefromtop = (formheight - ((allbuttons.Width * rowcount) + (spacebetween * (rowcount - 1)))) / 2;
+            int spacefromleft = (formwidth - ((allbuttons.Width * collumcount) + (spacebetween * (collumcount - 1)))) / 2;
+            allbuttons.Left = collum * (allbuttons.Width + spacebetween) + spacefromleft;
+            allbuttons.Top = row * (allbuttons.Width + spacebetween) + spacefromtop;
         }
-        private void AutoSizeCheck(int collum, int row, int formwidth, int count, int collumcount, int rowcount, int formheight, int spacebetween)
+        private void AutoSizeCheck(int collum, int row, int formwidth, int collumcount, int rowcount, int formheight, Button allbuttons)
         {
-            int rowlength = ((this.Width * collumcount) + (spacebetween * (collumcount - 1)));
-            int collumlength = ((this.Width * rowcount) + (spacebetween * (rowcount - 1)));
-            int autosizesidespace = 10;
+
+            int rowlength = ((allbuttons.Width * collumcount) + (spacebetween * (collumcount - 1)));
+            int collumlength = ((allbuttons.Width * rowcount) + (spacebetween * (rowcount - 1)));
+            int autosizesidespace = 15;
             for(int i = 1; i < 3; i++)
             {
-                int x = 0;
-                int y = 0;
-                int z = 0;
+                int x = 0;int y = 0;int z = 0;
                 if (i == 1) { x = collumcount; y = formwidth; z = rowlength; }
                 else if (i == 2) { x = rowcount; y = formheight; z = collumlength; }
                 if (z > y)
                 {
-                    if (y - (x * this.Width) < 0)
+                    if (y - (x * allbuttons.Width) < 0)
                     {
-                        int avrgdifference = (formwidth - (x * this.Width)) / x;
+                        int avrgdifference = (formwidth - (x * allbuttons.Width)) / x;
 
-                        this.Width += avrgdifference;
-                        //this.Width -= (autosizesidespace / (new[] { rowcount, collumcount }).Max());
-                        this.Height = this.Width;
+                        allbuttons.Width += avrgdifference;
+                        allbuttons.Width -= (autosizesidespace / (new[] { rowcount, collumcount }).Max());
+                        allbuttons.Height = allbuttons.Width;
                         spacebetween = 0;
-                        UpdateLocation(collum, row, formwidth, count, collumcount, rowcount, formheight, spacebetween);
+                        UpdateLocation(collum, row, formwidth, collumcount, rowcount, formheight, allbuttons);
                     }
                     else
                     {
                         spacebetween = 0;
-                        UpdateLocation(collum, row, formwidth, count, collumcount, rowcount, formheight, spacebetween);
+                        UpdateLocation(collum, row, formwidth, collumcount, rowcount, formheight, allbuttons);
                     }
                 }
             }
         }
+        
     }
 }
 

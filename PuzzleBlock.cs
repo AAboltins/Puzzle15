@@ -13,7 +13,8 @@ using System.Threading;
 namespace Puzzle15
 {
     
-    class PuzzleBlock : Button
+    class 
+        PuzzleBlock : Button
     {
         public static int spacebetween { get; set; }
         public int space = spacebetween;
@@ -28,20 +29,24 @@ namespace Puzzle15
             //properties-------------------------------------------------------------------------------------------------------------------------------
             allbuttons.Width = allbuttons.Height = 100;
             allbuttons.BackColor = Color.White;
-            if(swap == false) { spacebetween = 20; }
+            if(swap == false) { spacebetween = 0; }
             //------------------------------------------------------------------------------------------------------------------------------------------
             //center buttons locations...
             UpdateLocation(collum, row, formwidth, collumcount, rowcount, formheight, allbuttons);
             //change button size if there is need to do that...
             AutoSizeCheck(collum, row, formwidth, collumcount, rowcount, formheight, allbuttons);
-            MessageBox.Show(spacebetween.ToString());
+
         }
         private void UpdateLocation(int collum, int row, int formwidth, int collumcount, int rowcount, int formheight, Button allbuttons)
         {
             int spacefromtop = (formheight - ((allbuttons.Width * rowcount) + (spacebetween * (rowcount - 1)))) / 2;
             int spacefromleft = (formwidth - ((allbuttons.Width * collumcount) + (spacebetween * (collumcount - 1)))) / 2;
+
             allbuttons.Left = collum * (allbuttons.Width + spacebetween) + spacefromleft;
             allbuttons.Top = row * (allbuttons.Width + spacebetween) + spacefromtop;
+
+            //MessageBox.Show(spacefromtop.ToString());
+            //MessageBox.Show(spacefromleft.ToString());
         }
         private void AutoSizeCheck(int collum, int row, int formwidth, int collumcount, int rowcount, int formheight, Button allbuttons)
         {

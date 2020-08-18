@@ -15,6 +15,8 @@ namespace Puzzle15
         List<Button> buttons = new List<Button>();
         int rowcount;
         int collumcount;
+        int OW;
+        int OH;
         public PuzzleArea()
         {
             InitializeComponent();
@@ -27,7 +29,8 @@ namespace Puzzle15
             this.Text = "Puzzle15";
             this.ClientSize = new Size(Width, Height);
             InitializeBlocks(Width, Height);
-
+            OW = this.Width;
+            OH = this.Height;
         }
         private void InitializeBlocks(int Width, int Height)
         {
@@ -55,7 +58,7 @@ namespace Puzzle15
         private void Block_Click(object sender, EventArgs e)
         {
             Button block = (Button)sender;
-            MessageBox.Show(block.Name);
+            //MessageBox.Show(block.Name);
             SwapBlocks(block);
         }
         private void SwapBlocks(Button block)
@@ -69,34 +72,38 @@ namespace Puzzle15
                 block.Location = Empty.Location;
                 Empty.Location = oldblocklocation;
             }
-            MessageBox.Show($"1__{Math.Sqrt(Math.Pow(block.Left - Empty.Left, 2) + Math.Pow(block.Top - Empty.Top, 2))},Width{block.Width},Space{p.space}");
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void PuzzleArea_ResizeEnd(object sender, EventArgs e)
         {
-            PuzzleBlock block2;
             int collum = 0;
             int row = 0;
-
             int count = 0;
-          foreach (var button in buttons)
+            int NW = this.Width - 16;
+            int NH = this.Height - 39;
+            PuzzleBlock block3;
+            PuzzleBlock block2 = new PuzzleBlock(0, 0, 0, 0, 0, 0, null, false);
+            foreach (var button in buttons)
             {
+                this.Width = OW;
+                this.Height = OH;
                 count++;
-                if (collum == collumcount)
-                {
-                    row++;
-                    collum = 0;
-                }
-                block2 = new PuzzleBlock(collum, row, this.Width - 16, collumcount, rowcount, this.Height - 39, button, false);
-                block2.Click += (Block_Click);
+                int BT = button.Top - ((OH-39) - ((button.Width * rowcount) + (0 * (rowcount - 1)))) / 2;
+                int BL = button.Left - ((OW-16) - ((button.Width * collumcount) + (0 * (collumcount - 1)))) / 2;
+
+                collum = BL / button.Width;
+                row = BT / button.Width;
+
+                block3 = new PuzzleBlock(collum, row, NW, collumcount, rowcount, NH, button, false);
                 if (count == (rowcount * collumcount)) { button.Text = null; button.Name = "ZeroBlock"; button.FlatStyle = FlatStyle.Flat; button.BackColor = Color.Black; count = 0; }
-                collum++;
             }
+            this.Width = NW + 16;
+            this.Height = NH + 39;
+
+        }
+        private void PuzzleArea_ResizeBegin(object sender, EventArgs e)
+        {
+            OW = this.Width;
+            OH = this.Height;
         }
     }
 }

@@ -1,0 +1,20 @@
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\bin\Debug\Puzzle15.exe.config
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\bin\Debug\Puzzle15.exe
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\bin\Debug\Puzzle15.pdb
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\obj\Debug\Puzzle15.csprojAssemblyReference.cache
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\obj\Debug\Puzzle15.PuzzleArea.resources
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\obj\Debug\Puzzle15.Properties.Resources.resources
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\obj\Debug\Puzzle15.csproj.GenerateResource.cache
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\obj\Debug\Puzzle15.csproj.CoreCompileInputs.cache
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\obj\Debug\Puzzle15.exe
+C:\Users\alfsa\OneDrive\Dators\Puzzle15-master\Puzzle15-master\obj\Debug\Puzzle15.pdb
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\bin\Debug\Puzzle15.exe.config
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\bin\Debug\Puzzle15.exe
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\bin\Debug\Puzzle15.pdb
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\obj\Debug\Puzzle15.csprojAssemblyReference.cache
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\obj\Debug\Puzzle15.PuzzleArea.resources
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\obj\Debug\Puzzle15.Properties.Resources.resources
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\obj\Debug\Puzzle15.csproj.GenerateResource.cache
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\obj\Debug\Puzzle15.csproj.CoreCompileInputs.cache
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\obj\Debug\Puzzle15.exe
+C:\Users\alfsa\OneDrive\Dators\Puzzle15 v.omega\Puzzle15-master\obj\Debug\Puzzle15.pdb
